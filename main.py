@@ -32,6 +32,7 @@ gravatar = Gravatar(app,
 
 ##CONFIGURE TABLES
 
+
 class User(UserMixin, db.Model):
     __tablename__ = "Users"
     id = db.Column(db.Integer, primary_key=True)
