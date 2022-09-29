@@ -96,6 +96,7 @@ def load_user(id):
 
 
 @app.route('/')
+@app.route("/home")
 def get_all_posts():
     posts = BlogPost.query.all()
     user_id = None
