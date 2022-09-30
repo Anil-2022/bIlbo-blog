@@ -1,5 +1,3 @@
-import os
-
 from flask import Flask, render_template, redirect, url_for, flash, request, abort
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -11,16 +9,16 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
-from boto.s3.connection import S3Connection
+import os
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = S3Connection(os.environ['SECRET_KEY'])
+app.config['SECRET_KEY'] = os.environ.get("SECRET-KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
 ##CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = S3Connection(os.environ['DATABASE_URL'])
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
